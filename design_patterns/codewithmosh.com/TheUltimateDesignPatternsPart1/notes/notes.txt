@@ -48,7 +48,7 @@ Encapsulation is more like bundling the data and methods within one uint/class a
 ===========
 Abstraction
 ===========
-Abstruction means we should reducing complexity by hiding unnecessary details from our classes.
+Abstruction means we should reduce complexity by hiding unnecessary details from our classes.
 Following absctrction principle, we will 'private' all irrelevant properties and method for users.
 
 ===========
@@ -84,12 +84,62 @@ To build maintainable software, we should design our classes in such a way that 
 
 // 04 - State Pattern (25m)
 
+State Pattern allows an object to behavive differently when its state changes.
 
+Open Close Principle
+That basically means, our classes should be open for extension but closed for modification.
+
+Don't abuse design pattern
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+// 05 - Iterator Pattern (21m)
+
+Changing the internal of an object should not affect it's consumers.
+
+Need to review this again.
+PHP does not support inner classes.
+
 ////////////////////////////////////////////////////////////////////////////////////
+
+// 06 - Strategy Pattern (13m)
+
+This pattern looks like state pattern.
+The structure of state pattern looks very similar to the structure of the strategy pattern.
+
+What is the difference?
+
+We use both these pattern to change the behaviour of an object. For example, 
+
+The difference between the state & strategy pattern is that in the state pattern, object can have single state (i.e: current tool) and all the behaviours are represented by subclass of tool interface.
+In contrast, in the strategy pattern, we don't have a single state. Different behaviours are represented using different strategy objects.
+
 ////////////////////////////////////////////////////////////////////////////////////
+
+// 07 - Template Method Pattern (13m)
+
+Problems with sample code (containing folder name is 'problem').
+----------------------------------------------------------------
+- Code duplication (private field & constructor in both classes)
+- Nobody is forcing to follow the structure (private field, constructor method & "auditTrail.record();" inside "execute()" method).
+
 ////////////////////////////////////////////////////////////////////////////////////
+
+// 08 - Command Pattern (28m)
+
+What the command pattern is all about?
+Let's say we want to design a graphical userinterface framework. So other developers get user framework to build applications with the graphical user interface.
+
+The code that should be executed here (inside click method of Button class) would be dependent on where we use this button.
+For example:
+on one dialog box, save something in database
+on another button, delete record from database
+
+So at the time of designing this framework at the time of implementing the button class we don't know
+what code should be executed when we click a button.
+
+The command pattern aims to solve this problem.
+
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
