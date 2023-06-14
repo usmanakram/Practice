@@ -128,7 +128,7 @@ Problems with sample code (containing folder name is 'problem').
 // 08 - Command Pattern (28m)
 
 What the command pattern is all about?
-Let's say we want to design a graphical userinterface framework. So other developers get user framework to build applications with the graphical user interface.
+Let's say we want to design a graphical userinterface framework. So other developers get use our framework to build applications with the graphical user interface.
 
 The code that should be executed here (inside click method of Button class) would be dependent on where we use this button.
 For example:
