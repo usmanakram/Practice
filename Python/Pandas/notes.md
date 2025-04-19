@@ -220,8 +220,48 @@ print('\n\n')
 print(pd.merge(df1, df2, on="names"))
 ```
 
-## Tutorial
+### Tutorial
 Python Pandas Crash Course (2025)
 https://www.youtube.com/watch?v=E9WGC0SLPVs
 
 
+
+### Parquet File Operations
+
+Read and Write simple `Parquet` file.
+```python
+import pandas as pd
+
+df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
+
+print('df')
+print(df)
+
+# Write Parquet file
+df.to_parquet('data/df.parquet.gzip', compression='gzip')
+
+# Read Parquet file
+df = pd.read_parquet('data/df.parquet.gzip')
+
+print('df')
+print(df)
+```
+
+Write partitioned `Parquet` file.
+```python
+import pandas as pd
+
+df = pd.read_csv('data/ParquetInputData.csv')
+
+print('df')
+print(df)
+
+print(f"Successfully created partitioned Parquet files inside './data/browns/' folder.")
+
+df.to_parquet(
+  f'data/browns/events/',
+  engine='pyarrow',
+  partition_cols=['year', 'month'],
+  index=False
+)
+```
