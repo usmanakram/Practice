@@ -320,3 +320,13 @@ df.to_parquet(
   index=False
 )
 ```
+
+Read partitioned `Parquet` file.
+```python
+import pandas as pd
+
+df = pd.read_parquet('data\\browns\\events')
+
+print('df')
+print(df)
+```
