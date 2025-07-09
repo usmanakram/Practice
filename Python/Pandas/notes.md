@@ -16,6 +16,13 @@ import pandas as pd
 
 s = pd.Series([1,2,3,4,5])
 print(s)
+# Output
+# 0    1
+# 1    2
+# 2    3
+# 3    4
+# 4    5
+# dtype: int64
 ```
 
 We can also give labels in this `series`.
@@ -25,6 +32,13 @@ import pandas as pd
 
 s = pd.Series([1,2,3,4,5], index=['a','b','c','d','e'])
 print(s)
+# Output
+# a    1
+# b    2
+# c    3
+# d    4
+# e    5
+# dtype: int64
 ```
 
 
@@ -33,6 +47,11 @@ import pandas as pd
 
 df = pd.DataFrame({ "names": ["Accounting", "Taxation", "HR"], "marks": [100, 53, 45] })
 print(df)
+# Output
+#         names  marks
+# 0  Accounting    100
+# 1    Taxation     53
+# 2          HR     45
 ```
 
 Read CSV file.
@@ -224,6 +243,42 @@ print(pd.merge(df1, df2, on="names"))
 Python Pandas Crash Course (2025)
 https://www.youtube.com/watch?v=E9WGC0SLPVs
 
+
+### Difference between two Pandas DataFrames
+
+1. Using merge + indicator=True (Recommended for full DataFrame comparison)
+```python
+import pandas as pd
+
+df1 = pd.DataFrame({'id': [1, 2, 3, 4], 'value': ['a', 'b', 'c', 'd']})
+df2 = pd.DataFrame({'id': [2, 4], 'value': ['b', 'd']})
+
+# Merge and find rows only in df1
+diff = df1.merge(df2, on=['id', 'value'], how='left', indicator=True).query('_merge == "left_only"').drop(columns=['_merge'])
+
+print(df1)
+print('\n\n')
+print(df2)
+print('\n\n')
+print(diff)
+```
+
+2. Using isin if comparing just one column (Simpler if only one key)
+Example if you just want to compare the 'id' column:
+```python
+import pandas as pd
+
+df1 = pd.DataFrame({'id': [1, 2, 3, 4], 'value': ['a', 'b', 'c', 'd']})
+df2 = pd.DataFrame({'id': [2, 4], 'value': ['b', 'd']})
+
+diff = df1[~df1['id'].isin(df2['id'])]
+
+print(df1)
+print('\n\n')
+print(df2)
+print('\n\n')
+print(diff)
+```
 
 
 ### Parquet File Operations
