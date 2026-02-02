@@ -211,11 +211,34 @@ df2 = pd.DataFrame({
   })
 
 print(df1)
+# Output
+#           names  marks
+# 0         Zahra     93
+# 1       Haleema     90
+# 2      Abdullah     91
+# 3  Abdul Rahman     97
+
 print('\n\n')
 print(df2)
-print('\n\n')
+# Output
+#          names  marks
+# 0       Fatima     94
+# 1       Ismael     92
+# 2  Abdul Momin     90
+# 3       Momina     96
 
+print('\n\n')
 print(pd.concat([df1, df2]))
+# Output
+#           names  marks
+# 0         Zahra     93
+# 1       Haleema     90
+# 2      Abdullah     91
+# 3  Abdul Rahman     97
+# 0        Fatima     94
+# 1        Ismael     92
+# 2   Abdul Momin     90
+# 3        Momina     96
 ```
 
 ```python
@@ -232,16 +255,54 @@ df2 = pd.DataFrame({
   })
 
 print(df1)
+# Output
+#      names  marks
+# 0    Zahra     93
+# 1  Haleema     90
+
 print('\n\n')
 print(df2)
-print('\n\n')
+# Output
+#       names  roll
+# 0     Zahra  1244
+# 1   Haleema  1245
+# 2  Abdullah  1255
 
+print('\n\n')
 print(pd.merge(df1, df2, on="names"))
+# Output
+#      names  marks  roll
+# 0    Zahra     93  1244
+# 1  Haleema     90  1245
 ```
 
 ### Tutorial
 Python Pandas Crash Course (2025)
 https://www.youtube.com/watch?v=E9WGC0SLPVs
+
+
+### Miscellaneous
+
+```python
+import pandas as pd
+
+df = pd.read_csv("data/Iris.csv")
+
+# Get the number of records in a Dataframe
+print(len(df))
+# Output
+# 150
+
+# Get the list of columns in a Dataframe
+print(list(df))
+# Output
+# ['Id', 'SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species']
+
+# Get the number of columns in a Dataframe
+print(len(list(df)))
+# Output
+# 6
+```
 
 
 ### Difference between two Pandas DataFrames
@@ -257,10 +318,26 @@ df2 = pd.DataFrame({'id': [2, 4], 'value': ['b', 'd']})
 diff = df1.merge(df2, on=['id', 'value'], how='left', indicator=True).query('_merge == "left_only"').drop(columns=['_merge'])
 
 print(df1)
+# Output
+#    id value
+# 0   1     a
+# 1   2     b
+# 2   3     c
+# 3   4     d
+
 print('\n\n')
 print(df2)
+# Output
+#    id value
+# 0   2     b
+# 1   4     d
+
 print('\n\n')
 print(diff)
+# Output
+#    id value
+# 0   1     a
+# 2   3     c
 ```
 
 2. Using isin if comparing just one column (Simpler if only one key)
@@ -274,10 +351,26 @@ df2 = pd.DataFrame({'id': [2, 4], 'value': ['b', 'd']})
 diff = df1[~df1['id'].isin(df2['id'])]
 
 print(df1)
+# Output
+#    id value
+# 0   1     a
+# 1   2     b
+# 2   3     c
+# 3   4     d
+
 print('\n\n')
 print(df2)
+# Output
+#    id value
+# 0   2     b
+# 1   4     d
+
 print('\n\n')
 print(diff)
+# Output
+#    id value
+# 0   1     a
+# 2   3     c
 ```
 
 
@@ -329,4 +422,14 @@ df = pd.read_parquet('data\\browns\\events')
 
 print('df')
 print(df)
+```
+
+
+
+```python
+# To print single object
+print(df.iloc[0].to_json(orient='index', indent=4))
+
+# To print array/list of objects
+print(df.head(2).to_json(orient='records', indent=4))
 ```
